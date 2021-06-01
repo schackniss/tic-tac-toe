@@ -1,0 +1,11 @@
+{
+    "finished": false,
+    "winner": 1,
+    "nextPlayer": 0,
+    "field":
+    {
+        "col0": ["X", " ", "O"],
+        "col1": ["X", " ", "O"],
+        "col2": ["X", " ", "O"],
+    }
+}
