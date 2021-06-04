@@ -1,3 +1,4 @@
+// Das Paket 'game' beinhaltet die Tic Tac Toe Spiellogik.
 package game
 
 // TicTacToe repräsentiert das Spiel und ist zugleich das API-Antwort-Format.
