@@ -24,3 +24,12 @@ func (ttt *TicTacToe) Reset() {
 	ttt.NextPlayer = 1
 	ttt.Field = [3]string{"   ", "   ", "   "}
 }
+
+// Player bestimmt den nächsten Spieler und setzt diesen Wert in der übergebenen Variable.
+func (ttt *TicTacToe) Player() {
+	if ttt.NextPlayer == 1 {
+		ttt.NextPlayer = 2
+	}
+	// Wenn der letzte Spieler 2 war oder ein unerwarteter Spieler hinterlegt ist, so ist Spieler 1 der Nächste.
+	ttt.NextPlayer = 1
+}
