@@ -10,3 +10,5 @@
 - `game/`: Tic-Tac-Toe Spiellogik
 - `web/`: HTML, CSS, JavaScript usw. zur browserseitigen Ausführung
 - `websocket/`: Websocket-Verbindung
+
+HALLO
