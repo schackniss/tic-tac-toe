@@ -1,5 +1,6 @@
 package game
 
+// TicTacToe repräsentiert das Spiel und ist zugleich das API-Antwort-Format.
 type TicTacToe struct {
 	Finished   bool      `json:"finished"`
 	Winner     int       `json:"winner"`
@@ -7,6 +8,7 @@ type TicTacToe struct {
 	Field      [3]string `json:"field"`
 }
 
+// Move repräsentiert einen Spielzug und ist zugleich das API-Anfrage-Format.
 type Move struct {
 	Player int  `json:"player"`
 	Column int  `json:"col"`
