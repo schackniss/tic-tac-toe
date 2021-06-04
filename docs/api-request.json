@@ -1,5 +1,6 @@
 {
     "player": 1,
     "col": 2,
-    "row": 0
+    "row": 0,
+    "reset": false
 }
