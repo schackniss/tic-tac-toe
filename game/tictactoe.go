@@ -13,3 +13,11 @@ type Move struct {
 	Row    int  `json:"row"`
 	Reset  bool `json:"reset"`
 }
+
+// Reset setzt die übergebene Variable auf Spielbeginn.
+func (ttt *TicTacToe) Reset() {
+	ttt.Finished = false
+	ttt.Winner = 0
+	ttt.NextPlayer = 1
+	ttt.Field = [3]string{"   ", "   ", "   "}
+}
