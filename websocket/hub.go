@@ -37,9 +37,9 @@ func (h *Hub) Run() {
 		case client := <-h.register:
 			h.clients[client] = true
 
-			// Willkommensnachricht an neuen Client schicken.
+			// Aktuellen Spielstand an neuen Client schicken.
 			select {
-			case client.send <- []byte("Willkommen!"):
+			case client.send <- welcome(&ttt):
 			default:
 				close(client.send)
 				delete(h.clients, client)
