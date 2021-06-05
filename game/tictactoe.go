@@ -33,3 +33,8 @@ func (ttt *TicTacToe) Player() {
 	// Wenn der letzte Spieler 2 war oder ein unerwarteter Spieler hinterlegt ist, so ist Spieler 1 der Nächste.
 	ttt.NextPlayer = 1
 }
+
+// Allowed prüft, ob der Zug zulässig ist bzw. ob das Feld bereits belegt ist und gibt einen Wahrheitswert (bool) zurück.
+func (mv *Move) Allowed(ttt TicTacToe) bool {
+	return ttt.Field[mv.Row][mv.Column] == ' '
+}
