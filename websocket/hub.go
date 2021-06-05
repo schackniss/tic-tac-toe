@@ -27,7 +27,7 @@ func NewHub() *Hub {
 }
 
 func (h *Hub) Run() {
-	res := game.TicTacToe{
+	ttt := game.TicTacToe{
 		NextPlayer: 1,
 		Field:      [3]string{"   ", "   ", "   "},
 	}
@@ -54,7 +54,7 @@ func (h *Hub) Run() {
 		case message := <-h.broadcast:
 
 			// Nachricht entgegennehmen, verarbeiten und Antwort an alle Clients schicken.
-			message = handleMessage(message, &res)
+			message = handleMessage(message, &ttt)
 
 			for client := range h.clients {
 				select {
