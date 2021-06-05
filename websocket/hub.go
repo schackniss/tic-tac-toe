@@ -1,5 +1,7 @@
 package websocket
 
+import "tic-tac-toe/game"
+
 // Hub verwaltet die Menge der aktiven Clients und sendet Nachrichten an die Clients.
 type Hub struct {
 	// Registrierte Clients.
@@ -25,6 +27,11 @@ func NewHub() *Hub {
 }
 
 func (h *Hub) Run() {
+	res := game.TicTacToe{
+		NextPlayer: 1,
+		Field:      [3]string{"   ", "   ", "   "},
+	}
+
 	for {
 		select {
 		case client := <-h.register:
@@ -47,7 +54,7 @@ func (h *Hub) Run() {
 		case message := <-h.broadcast:
 
 			// Nachricht entgegennehmen, verarbeiten und Antwort an alle Clients schicken.
-			message = handleMessage(message)
+			message = handleMessage(message, &res)
 
 			for client := range h.clients {
 				select {
