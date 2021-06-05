@@ -18,9 +18,11 @@ func handleMessage(msg []byte, res *game.TicTacToe) []byte {
 	fmt.Print("API-Request: ")
 	fmt.Println(req)
 
+	// Prüfen, ob Reset angefordert wurde
 	if req.Reset {
 		res.Reset()
 	} else {
+		// Prüfen, ob der Zug erlaubt ist (noch kein X oder O auf Feld)
 		if req.Allowed(*res) {
 			res.Player()
 		}
