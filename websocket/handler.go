@@ -36,3 +36,14 @@ func handleMessage(msg []byte, res *game.TicTacToe) []byte {
 	fmt.Println(res)
 	return msg
 }
+
+// welcome formatiert den aktuellen Spielstand als JSON type []byte.
+func welcome(ttt *game.TicTacToe) []byte {
+	msg, err := json.Marshal(ttt)
+	if err != nil {
+		fmt.Println(err.Error())
+	}
+	fmt.Print("Willkommen: ")
+	fmt.Println(ttt)
+	return msg
+}
