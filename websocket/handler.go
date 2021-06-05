@@ -33,7 +33,7 @@ func handleMessage(msg []byte, res *game.TicTacToe) []byte {
 		fmt.Println(err.Error())
 	}
 	fmt.Print("API-Response: ")
-	fmt.Println(res)
+	fmt.Println(*res)
 	return msg
 }
 
@@ -44,6 +44,6 @@ func welcome(ttt *game.TicTacToe) []byte {
 		fmt.Println(err.Error())
 	}
 	fmt.Print("Willkommen: ")
-	fmt.Println(ttt)
+	fmt.Println(*ttt)
 	return msg
 }
