@@ -38,3 +38,42 @@ func (ttt *TicTacToe) Player() {
 func (mv *Move) Allowed(ttt TicTacToe) bool {
 	return ttt.Field[mv.Row][mv.Column] == ' '
 }
+
+// Symbol gibt das Symbol, dass auf dem Spielfeld gesetzt werden muss zurück.
+func (mv *Move) Symbol() string {
+	if mv.Player == 1 {
+		return "X"
+	}
+	return "O"
+}
+
+// Win überprüft, ob ein Spieler gewonnen hat und gibt dies als bool zurück.
+func (ttt *TicTacToe) Win(mv Move) bool {
+	var symbol byte
+	switch ttt.NextPlayer {
+	case 1:
+		symbol = 'X'
+	case 2:
+		symbol = 'O'
+	}
+
+	if ttt.Field[mv.Row][0] == symbol && ttt.Field[mv.Row][1] == symbol && ttt.Field[mv.Row][2] == symbol {
+		ttt.Winner = ttt.NextPlayer
+		ttt.Finished = true
+		return true
+	} else if ttt.Field[0][mv.Column] == symbol && ttt.Field[1][mv.Column] == symbol && ttt.Field[2][mv.Column] == symbol {
+		ttt.Winner = ttt.NextPlayer
+		ttt.Finished = true
+		return true
+	} else if ttt.Field[0][0] == symbol && ttt.Field[1][1] == symbol && ttt.Field[2][2] == symbol {
+		ttt.Winner = ttt.NextPlayer
+		ttt.Finished = true
+		return true
+	} else if ttt.Field[0][2] == symbol && ttt.Field[1][1] == symbol && ttt.Field[2][0] == symbol {
+		ttt.Winner = ttt.NextPlayer
+		ttt.Finished = true
+		return true
+	} else {
+		return false
+	}
+}
