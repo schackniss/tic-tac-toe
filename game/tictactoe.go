@@ -80,3 +80,23 @@ func (ttt *TicTacToe) Win(mv Move) bool {
 func (ttt *TicTacToe) End() bool {
 	return !(strings.Contains(ttt.Field[0], " ") && strings.Contains(ttt.Field[1], " ") && strings.Contains(ttt.Field[2], " "))
 }
+
+// Set überträgt den Spielzug auf das Spielfeld.
+func (ttt *TicTacToe) Set(mv Move) {
+	var symbol string
+	switch ttt.NextPlayer {
+	case 1:
+		symbol = "X"
+	case 2:
+		symbol = "O"
+	}
+
+	switch mv.Column {
+	case 0:
+		ttt.Field[mv.Row] = symbol + ttt.Field[mv.Row][1:]
+	case 1:
+		ttt.Field[mv.Row] = ttt.Field[mv.Row][:1] + symbol + ttt.Field[mv.Row][2:]
+	case 2:
+		ttt.Field[mv.Row] = ttt.Field[mv.Row][:2] + symbol
+	}
+}
