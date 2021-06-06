@@ -59,19 +59,15 @@ func (ttt *TicTacToe) Win(mv Move) bool {
 
 	if ttt.Field[mv.Row][0] == symbol && ttt.Field[mv.Row][1] == symbol && ttt.Field[mv.Row][2] == symbol {
 		ttt.Winner = ttt.NextPlayer
-		ttt.Finished = true
 		return true
 	} else if ttt.Field[0][mv.Column] == symbol && ttt.Field[1][mv.Column] == symbol && ttt.Field[2][mv.Column] == symbol {
 		ttt.Winner = ttt.NextPlayer
-		ttt.Finished = true
 		return true
 	} else if ttt.Field[0][0] == symbol && ttt.Field[1][1] == symbol && ttt.Field[2][2] == symbol {
 		ttt.Winner = ttt.NextPlayer
-		ttt.Finished = true
 		return true
 	} else if ttt.Field[0][2] == symbol && ttt.Field[1][1] == symbol && ttt.Field[2][0] == symbol {
 		ttt.Winner = ttt.NextPlayer
-		ttt.Finished = true
 		return true
 	} else {
 		return false
