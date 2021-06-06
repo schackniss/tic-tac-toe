@@ -8,7 +8,7 @@ type Move struct {
 	Reset  bool `json:"reset"`
 }
 
-// Allowed prüft, ob der Zug zulässig ist bzw. ob das Feld bereits belegt ist und gibt einen Wahrheitswert (bool) zurück.
-func (mv *Move) Allowed(ttt TicTacToe) bool {
+// allowed prüft, ob der Zug zulässig ist bzw. ob das Feld bereits belegt ist und gibt einen Wahrheitswert (bool) zurück.
+func (mv *Move) allowed(ttt TicTacToe) bool {
 	return ttt.Field[mv.Row][mv.Column] == ' ' && mv.Player == ttt.NextPlayer
 }
