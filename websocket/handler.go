@@ -24,6 +24,12 @@ func handleMessage(msg []byte, res *game.TicTacToe) []byte {
 	} else {
 		// Prüfen, ob der Zug erlaubt ist (noch kein X oder O auf Feld)
 		if req.Allowed(*res) {
+			res.Set(req)
+
+			if res.Win(req) || res.End() {
+				res.Finished = true
+			}
+
 			res.Player()
 		}
 	}
