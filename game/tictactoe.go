@@ -42,14 +42,6 @@ func (mv *Move) Allowed(ttt TicTacToe) bool {
 	return ttt.Field[mv.Row][mv.Column] == ' ' && mv.Player == ttt.NextPlayer
 }
 
-// Symbol gibt das Symbol, dass auf dem Spielfeld gesetzt werden muss zurück.
-func (mv *Move) Symbol() string {
-	if mv.Player == 1 {
-		return "X"
-	}
-	return "O"
-}
-
 // Win überprüft, ob ein Spieler gewonnen hat und gibt dies als bool zurück.
 func (ttt *TicTacToe) Win(mv Move) bool {
 	var symbol byte
