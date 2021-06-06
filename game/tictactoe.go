@@ -11,14 +11,6 @@ type TicTacToe struct {
 	Field      [3]string `json:"field"`
 }
 
-// Move repräsentiert einen Spielzug und ist zugleich das API-Anfrage-Format.
-type Move struct {
-	Player int  `json:"player"`
-	Column int  `json:"col"`
-	Row    int  `json:"row"`
-	Reset  bool `json:"reset"`
-}
-
 // Reset setzt die übergebene Variable auf Spielbeginn.
 func (ttt *TicTacToe) Reset() {
 	ttt.Finished = false
@@ -35,11 +27,6 @@ func (ttt *TicTacToe) Player() {
 		// Wenn der letzte Spieler 2 war oder ein unerwarteter Spieler hinterlegt ist, so ist Spieler 1 der Nächste.
 		ttt.NextPlayer = 1
 	}
-}
-
-// Allowed prüft, ob der Zug zulässig ist bzw. ob das Feld bereits belegt ist und gibt einen Wahrheitswert (bool) zurück.
-func (mv *Move) Allowed(ttt TicTacToe) bool {
-	return ttt.Field[mv.Row][mv.Column] == ' ' && mv.Player == ttt.NextPlayer
 }
 
 // Win überprüft, ob ein Spieler gewonnen hat und gibt dies als bool zurück.
