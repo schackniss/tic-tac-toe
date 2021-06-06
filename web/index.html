@@ -1,33 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Tic Tac Toe</title>
-<script type="text/javascript" src="logic.js"></script>
-<link rel="stylesheet" href="style.css"> //bettet das stylesheet hier ein, damit es übersichtlicher wird 
+    <title>Tic Tac Toe</title>
+    <link rel="stylesheet" type="text/css" href="style.css"/> <!--bettet das stylesheet hier ein, damit es übersichtlicher wird -->
+    <script type="text/javascript" src="logic.js"></script>
 </head>
 <body>
-<div id="Header">
-    <h1 id="ueberschrift">Tic Tac Toe</h1>
-    <h3 id="spieler"> Spieler {} ist an der Reihe </h3>
+<div id="Header"> <!--Header container für die Überschrift und Anzeige, welcher Spieler am Zug ist-->
+    <h1 id="ueberschrift">Tic Tac Toe</h1> 
+    <hr>
+    <h3 id="spieler"> Spieler*in *VARIABLE* ist an der Reihe </h3>
 </div>
-</hr>
-<div id="spielfeld">
-    <button id="spielfeldbutton"></button>
-    <button id="spielfeldbutton"></button>
-    <button id="spielfeldbutton"></button>
+
+<div id="spielfeld"> <!-- Container für das Spielfeld um die Elemente besser organisieren zu können -->
+    <div id="buttons">
+    <button id="btn00" value="" onclick=""></button>
+    <button id="btn01" value="" onclick=""></button>
+    <button id="btn02" value="" onclick=""></button>
     </br>
-    <button id="spielfeldbutton"></button>   
-    <button id="spielfeldbutton"></button>
-    <button id="spielfeldbutton"></button>
+    <button id="btn10" value="" onclick=""></button>   
+    <button id="btn11" value="" onclick=""></button>
+    <button id="btn12" value="" onclick=""></button>
     </br>
-    <button id="spielfeldbutton"></button>
-    <button id="spielfeldbutton"></button>
-    <button id="spielfeldbutton"></button>
+    <button id="btn20" value="" onclick=""></button>
+    <button id="btn21" value="" onclick=""></button>
+    <button id="btn22" value="" onclick=""></button>
 </div>
-<div id="footer">   
-    <button type="reset" value="reset"> 
+</div>
+<br>
+<hr>
+<br>
+<br>
+<div id="footer">  <!--container für footer-->
+    <button type="reset" value="reset" id="resetbtn"> 
       reset game
     </button>
+    </br>
+</br>
+</br>
+    
+</div>
+<div id="img">
+<img src="https://imgs.xkcd.com/comics/git.png" />
 </div>
 </body>
 </html>
