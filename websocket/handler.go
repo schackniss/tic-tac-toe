@@ -11,6 +11,7 @@ import (
 // Die Nachricht ist der vom Client durchgeführte Spielzug. handleMessage ruft die Spiellogik auf und gibt den neuen Spielstand zurück.
 func handleMessage(msg []byte, res *game.TicTacToe) []byte {
 	req := game.Move{}
+	// Empfangene JSON in struct Move umwandeln.
 	err := json.Unmarshal(msg, &req)
 	if err != nil {
 		fmt.Println(err.Error())
@@ -18,26 +19,19 @@ func handleMessage(msg []byte, res *game.TicTacToe) []byte {
 	fmt.Print("API-Request: ")
 	fmt.Println(req)
 
-	// Prüfen, ob Reset angefordert wurde
+	// Prüfen, ob Reset angefordert wurde.
 	if req.Reset {
 		res.Reset()
 	} else {
-		// Prüfen, ob der Zug erlaubt ist (noch kein X oder O auf Feld)
-		if req.Allowed(*res) {
-			res.Set(req)
-
-			if res.Win(req) || res.End() {
-				res.Finished = true
-			}
-
-			res.Player()
-		}
+		// Spiel-Ablauf durchführen.
+		res.Play(req)
 	}
-
+	// Neuen Spielstand zu JSON formatieren
 	msg, err = json.Marshal(res)
 	if err != nil {
 		fmt.Println(err.Error())
 	}
+	// Neuen Spielstand über Terminal ausgeben
 	fmt.Print("API-Response: ")
 	fmt.Println(*res)
 	return msg
