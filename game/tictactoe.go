@@ -1,6 +1,8 @@
 // Das Paket 'game' beinhaltet die Tic Tac Toe Spiellogik.
 package game
 
+import "strings"
+
 // TicTacToe repräsentiert das Spiel und ist zugleich das API-Antwort-Format.
 type TicTacToe struct {
 	Finished   bool      `json:"finished"`
@@ -72,4 +74,9 @@ func (ttt *TicTacToe) Win(mv Move) bool {
 	} else {
 		return false
 	}
+}
+
+// End überprüft, ob das Spielfeld vollständig belegt ist.
+func (ttt *TicTacToe) End() bool {
+	return !(strings.Contains(ttt.Field[0], " ") && strings.Contains(ttt.Field[1], " ") && strings.Contains(ttt.Field[2], " "))
 }
