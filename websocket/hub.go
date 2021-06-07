@@ -17,6 +17,7 @@ type Hub struct {
 	unregister chan *Client
 }
 
+// NewHub ist der Konstruktor zur Initialisierung eines neuen Hubs.
 func NewHub() *Hub {
 	return &Hub{
 		broadcast:  make(chan []byte),
@@ -26,6 +27,9 @@ func NewHub() *Hub {
 	}
 }
 
+// Run startet den Hub, um die Anfragen (register, unregister, message) der Clients zu verwalten.
+//
+// Die Anwendung startet eine Go-Routine für die Funktion Run.
 func (h *Hub) Run() {
 	ttt := game.TicTacToe{
 		NextPlayer: 1,

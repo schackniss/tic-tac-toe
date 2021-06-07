@@ -1,3 +1,5 @@
+// websocket dient der Implementierung von Websockets für das Spiel Tic Tac Toe
+// Die Implementierung basiert auf dem Repository https://github.com/gorilla/websocket.
 package websocket
 
 import (
@@ -9,6 +11,7 @@ import (
 	"github.com/gorilla/websocket"
 )
 
+// Deinition von Konstanten.
 const (
 	// Zeit, die für das Schreiben einer Nachricht an die Gegenstelle zur Verfügung steht.
 	writeWait = 10 * time.Second
@@ -28,6 +31,7 @@ var (
 	space   = []byte{' '}
 )
 
+// Definition der Lese- und Schreib-Puffer-Größe.
 var upgrader = websocket.Upgrader{
 	ReadBufferSize:  1024,
 	WriteBufferSize: 1024,
