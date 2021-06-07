@@ -5,7 +5,8 @@ import (
 	"fmt"
 	"log"
 	"net/http"
-	"tic-tac-toe/websocket"
+
+	"github.com/schackniss/tic-tac-toe/websocket"
 )
 
 func main() {
