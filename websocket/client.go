@@ -1,5 +1,3 @@
-// websocket dient der Implementierung von Websockets für das Spiel Tic Tac Toe
-// Die Implementierung basiert auf dem Repository https://github.com/gorilla/websocket.
 package websocket
 
 import (
