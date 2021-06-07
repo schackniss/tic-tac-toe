@@ -1,5 +1,5 @@
 # Paket: websocket
-Da Paket gehört zur serverseitigen Implementierung, dem sogenannten Backend.
+Das Paket gehört zur serverseitigen Implementierung, dem sogenannten Backend.
 Die Umsetzung ist mit Hilfe des Paketes [`github.com/gorilla/websocket`](https://github.com/gorilla/websocket)
 
 ## Enthaltene Dateien
