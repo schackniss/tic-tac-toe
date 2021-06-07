@@ -1,4 +1,4 @@
-module github.com/schackniss/tic-tac-toe
+module tic-tac-toe
 
 go 1.16
 
