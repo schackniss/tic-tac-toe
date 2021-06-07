@@ -3,7 +3,7 @@ package game
 
 import "strings"
 
-// TicTacToe repräsentiert das Spiel und ist zugleich das API-Antwort-Format.
+// TicTacToe repräsentiert den Spielstand und ist zugleich das API-Antwort-Format.
 type TicTacToe struct {
 	Finished   bool      `json:"finished"`
 	Winner     int       `json:"winner"`
