@@ -17,3 +17,4 @@ Die Umsetzung ist mit Hilfe des Repositories [`github.com/gorilla/websocket`](ht
 ## Code-Dokumentation
 - im Code als Kommentare
 - in der PDF `docs/websocket-doc.pdf`
+- im UML-Diagramm `docs/uml-diagram.png`

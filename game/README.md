@@ -11,3 +11,4 @@
 ## Code-Dokumentation
 - im Code als Kommentare
 - in der PDF `docs/game-doc.pdf`
+- im UML-Diagramm `docs/uml-diagram.png`
