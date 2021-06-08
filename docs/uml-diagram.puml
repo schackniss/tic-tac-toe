@@ -1,0 +1,57 @@
+@startuml
+namespace game {
+    class Move << (S,Aquamarine) >> {
+        + Player int
+        + Column int
+        + Row int
+        + Reset bool
+
+        - allowed(ttt TicTacToe) bool
+
+    }
+    class TicTacToe << (S,Aquamarine) >> {
+        + Finished bool
+        + Winner int
+        + NextPlayer int
+        + Field []string
+
+        - player() 
+        - win(mv Move) bool
+        - end() bool
+        - set(mv Move) 
+
+        + Reset() 
+        + Play(mv Move) 
+
+    }
+}
+
+
+
+namespace websocket {
+    class Client << (S,Aquamarine) >> {
+        - hub *Hub
+        - conn *websocket.Conn
+        - send <font color=blue>chan</font> []byte
+
+        - readPump() 
+        - writePump() 
+
+    }
+    class Hub << (S,Aquamarine) >> {
+        - clients <font color=blue>map</font>[*Client]bool
+        - broadcast <font color=blue>chan</font> []byte
+        - register <font color=blue>chan</font> *Client
+        - unregister <font color=blue>chan</font> *Client
+
+        + Run() 
+
+    }
+}
+
+
+"websocket.Client" o-- "websocket.Conn"
+"websocket.Client" o-- "websocket.Hub"
+"websocket.Hub" o-- "websocket.Client"
+
+@enduml
