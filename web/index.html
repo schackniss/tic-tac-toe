@@ -1,47 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Tic Tac Toe</title>
-    <link rel="stylesheet" type="text/css" href="style.css"/> <!--bettet das stylesheet hier ein, damit es übersichtlicher wird -->
-    <script type="text/javascript" src="logic.js"></script>
+<title>Tic Tac Toe</title>
+<script type="text/javascript" src="logic.js"></script>
+<style type="text/css">
+html {
+    overflow: hidden;
+}
+
+body {
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    background: gray;
+}
+
+#log {
+    background: white;
+    margin: 0;
+    padding: 0.5em 0.5em 0.5em 0.5em;
+    position: absolute;
+    top: 0.5em;
+    left: 0.5em;
+    right: 0.5em;
+    bottom: 3em;
+    overflow: auto;
+}
+
+#form {
+    padding: 0 0.5em 0 0.5em;
+    margin: 0;
+    position: absolute;
+    bottom: 1em;
+    left: 0px;
+    width: 100%;
+    overflow: hidden;
+}
+
+</style>
 </head>
 <body>
-<div id="Header"> <!--Header container für die Überschrift und Anzeige, welcher Spieler am Zug ist-->
-    <h1 id="ueberschrift">Tic Tac Toe</h1> 
-    <hr>
-    <h3 id="spieler"> Spieler*in *VARIABLE* ist an der Reihe </h3>
-</div>
-
-<div id="spielfeld"> <!-- Container für das Spielfeld um die Elemente besser organisieren zu können -->
-    <div id="buttons">
-    <button id="btn00" value="" onclick=""></button>
-    <button id="btn01" value="" onclick=""></button>
-    <button id="btn02" value="" onclick=""></button>
-    </br>
-    <button id="btn10" value="" onclick=""></button>   
-    <button id="btn11" value="" onclick=""></button>
-    <button id="btn12" value="" onclick=""></button>
-    </br>
-    <button id="btn20" value="" onclick=""></button>
-    <button id="btn21" value="" onclick=""></button>
-    <button id="btn22" value="" onclick=""></button>
-</div>
-</div>
-<br>
-<hr>
-<br>
-<br>
-<div id="footer">  <!--container für footer-->
-    <button type="reset" value="reset" id="resetbtn"> 
-      reset game
-    </button>
-    </br>
-</br>
-</br>
-    
-</div>
-<div id="img">
-<img src="https://imgs.xkcd.com/comics/git.png" />
-</div>
+<div id="log"></div>
+<form id="form">
+    <input type="submit" value="Send" />
+    <input type="text" id="msg" size="64" autofocus />
+</form>
 </body>
 </html>
