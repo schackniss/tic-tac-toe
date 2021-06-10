@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+
 	"tic-tac-toe/websocket"
 )
 
@@ -16,7 +17,9 @@ func main() {
 	flag.Parse()
 	hub := websocket.NewHub()
 	go hub.Run()
-	http.HandleFunc("/", websocket.ServeIndex)
+	fs := http.FileServer(http.Dir("./web"))
+	http.Handle("/", fs)
+	// http.HandleFunc("/", websocket.ServeIndex)
 	http.HandleFunc("/ws", func(w http.ResponseWriter, r *http.Request) {
 		websocket.Serve(hub, w, r)
 	})
