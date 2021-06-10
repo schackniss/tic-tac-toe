@@ -1,7 +1,39 @@
+var playernumber = 1; // Enthält den aktuellen Spieler
+
+// Diese Funktion wird ausgeführt, wenn ein Button auf dem Spielfeld gedrückt wird.
+// Abhängig vom aktuellen Spieler wird ein 'X' oder ein 'O' in das Feld geschrieben wird und das Feld wird für weitere Eingaben gesperrt.
+function changeField(element){
+    if(playernumber == 1)
+    {
+        element.value = "O";
+        element.disabled = true;
+        playernumber = 2;
+    } 
+    else if(playernumber == 2)
+    {
+        element.value = "X";
+        element.disabled = true;
+        playernumber = 1;
+    }
+    document.getElementById("spielernummer").innerHTML = playernumber;
+}
+
+// Diese Funktion wird ausgeführt, wenn der Reset-Button gedrückt wird. Sie leert alle Felder des Spielsfelds und entsperrt diese ggf. wieder.
+function resetField()
+{
+    buttons = document.getElementById("spielfeld").getElementsByTagName("input"); // Buttons ist ein Array, der eine Referenz zu allen Buttons des Spielfelds enthält
+
+    for(i=0; i<buttons.length; i++)
+    {
+        buttons[i].value = " ";
+        buttons[i].disabled = false;
+    }
+}
+
 window.onload = function () {
     var conn;
-    var msg = document.getElementById("msg");
-    var log = document.getElementById("log");
+    var msg = document.getElementById("msg"); // Request
+    var log = document.getElementById("log"); //Answer
 
     function appendLog(item) {
         var doScroll = log.scrollTop > log.scrollHeight - log.clientHeight - 1;
@@ -11,6 +43,7 @@ window.onload = function () {
         }
     }
 
+    // Schickt die Nachricht
     document.getElementById("form").onsubmit = function () {
         if (!conn) {
             return false;

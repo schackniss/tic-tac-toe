@@ -10,22 +10,25 @@
 <div id="Header"> <!--Header container für die Überschrift und Anzeige, welcher Spieler am Zug ist-->
     <h1 id="ueberschrift">Tic Tac Toe</h1> 
     <hr>
-    <h3 id="spieler"> Spieler*in </h3> <var> </var> <h3 id="spieler"> ist an der Reihe </h3> 
+    <div id ="spieler">
+        <h3>Spieler*in</h3><h3 id="spielernummer"></h3><h3>ist an der Reihe</h3> 
+    </div>
+    
 </div>
 
 <div id="spielfeld"> <!-- Container für das Spielfeld um die Elemente besser organisieren zu können -->
     <div id="buttons">
-    <input onclick="change()" type="button" disabled="false" value="   " id="btn00"></input> <!-- onClick wird bei einem klick auf den Button ausgeführt -> siehe logic.js für die ausgeführte Funktion -->
-    <input onclick="change()" type="button" disabled="false" value="O" id="btn01"></input>
-    <input onclick="change()" type="button" disabled="false" value="X" id="btn02"></input>
+    <input onclick="changeField(this)" type="button" value=" " id="btn00"></input> <!-- onClick wird bei einem klick auf den Button ausgeführt -> siehe logic.js für die ausgeführte Funktion -->
+    <input onclick="changeField(this)" type="button" value="O" id="btn01"></input>
+    <input onclick="changeField(this)" type="button" value=" " id="btn02"></input>
     </br>
-    <input onclick="change()" type="button" disabled="false" value="X" id="btn10"></input>   
-    <input onclick="change()" type="button" disabled="false" value="X" id="btn11"></input>
-    <input onclick="change()" type="button" disabled="false" value="X" id="btn12"></input>
+    <input onclick="changeField(this)" type="button" value="X" id="btn10"></input>   
+    <input onclick="changeField(this)" type="button" value="X" id="btn11"></input>
+    <input onclick="changeField(this)" type="button" value="X" id="btn12"></input>
     </br>
-    <input onclick="change()" type="button" disabled="false" value="X" id="btn20"></input>
-    <input onclick="change()" type="button" disabled="false" value="X" id="btn21"></input>
-    <input onclick="change()" type="button" disabled="false" value="X" id="btn22"></input>
+    <input onclick="changeField(this)" type="button" value="X" id="btn20"></input>
+    <input onclick="changeField(this)" type="button" value="X" id="btn21"></input>
+    <input onclick="changeField(this)" type="button" value="X" id="btn22"></input>
 </div>
 </div>
 <br>
@@ -33,8 +36,8 @@
 <br>
 <br>
 <div id="footer">  <!--container für footer-->
-    <button onclick="change()" type="button" disabled="false" id="resetbtn">reset game</button>
-    </br>
+    <button onclick="resetField()" type="button" id="resetbtn">reset game</button>
+</br>
 </br>
 </br>
     
