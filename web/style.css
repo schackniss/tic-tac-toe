@@ -1,3 +1,4 @@
+/* */
 html {
     overflow: scroll;
     
@@ -47,8 +48,8 @@ body {
 }
 
 
-
-button{   
+/* wird auf jeden button angewendet, um ein einheitliches Bild zu erstellen */
+input{   
     box-shadow:inset 4px 4px 3px 0px #ffffff;
     background:linear-gradient(to bottom, #ededed 5%, #dfdfdf 100%);
     background-color:#ededed;
@@ -63,11 +64,14 @@ button{
     padding:10% 10%;
     text-decoration:none;
 }
-button:hover {
+
+/* wenn die Maus über den button hovert, wird der style verändert. Das verdeutlicht die Auswahl des Spielers */
+input:hover {
     background:linear-gradient(to bottom, #dfdfdf 5%, #ededed 100%);
     background-color:#dfdfdf;
+
 }
-button:active {
+input:active {
     position:relative;
     top:1px;
 }
@@ -84,19 +88,6 @@ button:active {
     margin: auto;
     padding-left: 15%;
     width: 45%;
-    
-}
-
-#log {
-    background: white;
-    margin: 0;
-    padding: 0.5em 0.5em 0.5em 0.5em;
-    position: absolute;
-    top: 0.5em;
-    left: 0.5em;
-    right: 0.5em;
-    bottom: 3em;
-    overflow: auto;
 }
 
 #form {

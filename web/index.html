@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!--  -->
 <html lang="en">
 <head>
     <title>Tic Tac Toe</title>
@@ -9,22 +10,22 @@
 <div id="Header"> <!--Header container für die Überschrift und Anzeige, welcher Spieler am Zug ist-->
     <h1 id="ueberschrift">Tic Tac Toe</h1> 
     <hr>
-    <h3 id="spieler"> Spieler*in *VARIABLE* ist an der Reihe </h3>
+    <h3 id="spieler"> Spieler*in </h3> <var> </var> <h3 id="spieler"> ist an der Reihe </h3> 
 </div>
 
 <div id="spielfeld"> <!-- Container für das Spielfeld um die Elemente besser organisieren zu können -->
     <div id="buttons">
-    <button id="btn00" value="" onclick=""></button>
-    <button id="btn01" value="" onclick=""></button>
-    <button id="btn02" value="" onclick=""></button>
+    <input onclick="change()" type="button" disabled="false" value="   " id="btn00"></input> <!-- onClick wird bei einem klick auf den Button ausgeführt -> siehe logic.js für die ausgeführte Funktion -->
+    <input onclick="change()" type="button" disabled="false" value="X" id="btn01"></input>
+    <input onclick="change()" type="button" disabled="false" value="X" id="btn02"></input>
     </br>
-    <button id="btn10" value="" onclick=""></button>   
-    <button id="btn11" value="" onclick=""></button>
-    <button id="btn12" value="" onclick=""></button>
+    <input onclick="change()" type="button" disabled="false" value="X" id="btn10"></input>   
+    <input onclick="change()" type="button" disabled="false" value="X" id="btn11"></input>
+    <input onclick="change()" type="button" disabled="false" value="X" id="btn12"></input>
     </br>
-    <button id="btn20" value="" onclick=""></button>
-    <button id="btn21" value="" onclick=""></button>
-    <button id="btn22" value="" onclick=""></button>
+    <input onclick="change()" type="button" disabled="false" value="X" id="btn20"></input>
+    <input onclick="change()" type="button" disabled="false" value="X" id="btn21"></input>
+    <input onclick="change()" type="button" disabled="false" value="X" id="btn22"></input>
 </div>
 </div>
 <br>
@@ -32,16 +33,14 @@
 <br>
 <br>
 <div id="footer">  <!--container für footer-->
-    <button type="reset" value="reset" id="resetbtn"> 
-      reset game
-    </button>
+    <input onclick="change()" type="button" disabled="false" value="reset game" id="resetbtn"></input>
     </br>
 </br>
 </br>
     
 </div>
-<div id="img">
-<img src="https://imgs.xkcd.com/comics/git.png" />
+<div id="img"> 
+<img src="https://imgs.xkcd.com/comics/git.png" /> <!-- img tag um das Bild einzufügen -->
 </div>
 </body>
 </html>
