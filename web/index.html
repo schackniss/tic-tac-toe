@@ -1,51 +1,46 @@
 <!DOCTYPE html>
+<!--  -->
 <html lang="en">
 <head>
-<title>Tic Tac Toe</title>
-<script type="text/javascript" src="logic.js"></script>
-<style type="text/css">
-html {
-    overflow: hidden;
-}
-
-body {
-    overflow: hidden;
-    padding: 0;
-    margin: 0;
-    width: 100%;
-    height: 100%;
-    background: gray;
-}
-
-#log {
-    background: white;
-    margin: 0;
-    padding: 0.5em 0.5em 0.5em 0.5em;
-    position: absolute;
-    top: 0.5em;
-    left: 0.5em;
-    right: 0.5em;
-    bottom: 3em;
-    overflow: auto;
-}
-
-#form {
-    padding: 0 0.5em 0 0.5em;
-    margin: 0;
-    position: absolute;
-    bottom: 1em;
-    left: 0px;
-    width: 100%;
-    overflow: hidden;
-}
-
-</style>
+    <title>Tic Tac Toe</title>
+    <link rel="stylesheet" type="text/css" href="style.css"/> <!--bettet das stylesheet hier ein, damit es übersichtlicher wird -->
+    <script type="text/javascript" src="logic.js"></script>
 </head>
 <body>
-<div id="log"></div>
-<form id="form">
-    <input type="submit" value="Send" />
-    <input type="text" id="msg" size="64" autofocus />
-</form>
+<div id="Header"> <!--Header container für die Überschrift und Anzeige, welcher Spieler am Zug ist-->
+    <h1 id="ueberschrift">Tic Tac Toe</h1> 
+    <hr>
+    <h3 id="spieler"> Spieler*in </h3> <var> </var> <h3 id="spieler"> ist an der Reihe </h3> 
+</div>
+
+<div id="spielfeld"> <!-- Container für das Spielfeld um die Elemente besser organisieren zu können -->
+    <div id="buttons">
+    <input onclick="change()" type="button" disabled="false" value="   " id="btn00"></input> <!-- onClick wird bei einem klick auf den Button ausgeführt -> siehe logic.js für die ausgeführte Funktion -->
+    <input onclick="change()" type="button" disabled="false" value="X" id="btn01"></input>
+    <input onclick="change()" type="button" disabled="false" value="X" id="btn02"></input>
+    </br>
+    <input onclick="change()" type="button" disabled="false" value="X" id="btn10"></input>   
+    <input onclick="change()" type="button" disabled="false" value="X" id="btn11"></input>
+    <input onclick="change()" type="button" disabled="false" value="X" id="btn12"></input>
+    </br>
+    <input onclick="change()" type="button" disabled="false" value="X" id="btn20"></input>
+    <input onclick="change()" type="button" disabled="false" value="X" id="btn21"></input>
+    <input onclick="change()" type="button" disabled="false" value="X" id="btn22"></input>
+</div>
+</div>
+<br>
+<hr>
+<br>
+<br>
+<div id="footer">  <!--container für footer-->
+    <input onclick="change()" type="button" disabled="false" value="reset game" id="resetbtn"></input>
+    </br>
+</br>
+</br>
+    
+</div>
+<div id="img"> 
+<img src="https://imgs.xkcd.com/comics/git.png" /> <!-- img tag um das Bild einzufügen -->
+</div>
 </body>
 </html>
