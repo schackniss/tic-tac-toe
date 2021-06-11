@@ -1,71 +1,84 @@
-var conn;
-var msg;
-var log;
+var conn; // Enthält eine Referenz zum Websocket
+var msg; // Enthält die API-Request
+var log; // Enthält die API-Response
 var playernumber = 1; // Enthält den aktuellen Spieler
 
-// Diese Funktion wird ausgeführt, wenn ein Button auf dem Spielfeld gedrückt wird.
-// Abhängig vom aktuellen Spieler wird ein 'X' oder ein 'O' in das Feld geschrieben wird und das Feld wird für weitere Eingaben gesperrt.
-function changeField(element)
+var log = {
+    "finished": false,
+    "winner": 1,
+    "nextPlayer": 0,
+    "field": ["XOX", "OXO", "XOX"]
+};
+
+// Verwaltet Eingaben der Clients und bereitet die Daten zum Senden für den API-Request vor.
+function handleClient(element)
 {
+    changeField(); // muss wieder entfernt werden!
     row = element.name[0];
     column = element.name[1];
-    sendRequest(row, column, false);
-
-    if(playernumber == 1)
-    {
-        //element.value = "O"; // Muss von Server gemacht werden
-        //element.disabled = true; // Nützt nichts, da sich die Buttons nur bei mir sperren würden
-        playernumber = 2;
-    } 
-    else if(playernumber == 2)
-    {
-        //element.value = "X";
-        //element.disabled = true;
-        playernumber = 1;
-    }
-    document.getElementById("spielernummer").innerHTML = playernumber;
+    sendAPIRequest(row, column, false);
 }
 
-// Diese Funktion wird ausgeführt, wenn der Reset-Button gedrückt wird. Sie leert alle Felder des Spielsfelds und entsperrt diese ggf. wieder.
-function resetField()
+// Verfasst eine Nachricht im JSON-Format und sendet einen API-Request mit der Nachricht.
+function sendAPIRequest(row, column, reset)
 {
-    sendRequest(0, 0, true);
-
-    
-    /*buttons = document.getElementById("spielfeld").getElementsByTagName("input"); // Buttons ist ein Array, der eine Referenz zu allen Buttons des Spielfelds enthält
-
-    for(i=0; i<buttons.length; i++)
-    {
-        buttons[i].value = " ";
-        buttons[i].disabled = false;
-    }*/
-}
-
-function sendRequest(row, column, reset)
-{
-    if (!conn) {
+    /*if (!conn) {
         window.alert("KEINE VERBINDUNG!");
-        return false;
-    }
+    }*/
     
     msg = {
         player: playernumber,
         col: column,
         row: row,
         reset: reset,
-        ICHBINNEUHIER: "Marc"
     };
-    
-    window.alert(msg.ICHBINNEUHIER);
+
+    conn.send(JSON.stringify(msg));
 }
 
+// Verwaltung der API-Antwort
+function handleAPIResponse()
+{
+    changeField();
+    evaluateGame();
+    changePlayer();
+}
+
+// Ändert den Inhalt des Spielfelds abhängig von der API-Antwort.
+function changeField()
+{    
+    buttons = document.getElementById("spielfeld").getElementsByTagName("input"); // Buttons ist ein Array, der eine Referenz zu allen Buttons des Spielfelds enthält
+    for(i=0; i<buttons.length; i++)
+    {
+        buttons[i].value = log.field[Math.floor(i/3)][Math.floor(i%3)];
+    }
+}
+
+// Auswertung des Spiels. Wenn es fertig ist, soll eine Anzeige aufpoppen und ..........
+function evaluateGame()
+{
+    if(log.finished == true)
+    {  
+        var endmsg;
+        if(log.winner == 0) endmsg = "Es gibt keinen Gewinner (Unentschieden).";
+        else endmsg = "Der Gewinner ist Spieler " + log.winner; 
+        window.alert("Das Spiel ist fertig. " + endmsg)
+
+        // Hier noch entscheiden, was am Ende passiert (Alles abbrechen??)
+    }
+}
+
+// Passt den aktuellen Spielernamen abhängig von der API-Antwort an.
+function changePlayer()
+{
+    playernumber = log.nextPlayer;
+    document.getElementById("spielernummer").innerHTML = playernumber;
+}
+
+// Wird beim Starten des Servers ausgeführt
 window.onload = function () 
 {
-    
-    //var msg = document.getElementById("msg"); // Request
-    //var log = document.getElementById("log"); //Answer
-
-    //Empfängt die Nachricht
+    // Brauchen wir das??
     function appendLog(item) {
         var doScroll = log.scrollTop > log.scrollHeight - log.clientHeight - 1;
         log.appendChild(item);
@@ -73,23 +86,6 @@ window.onload = function ()
             log.scrollTop = log.scrollHeight - log.clientHeight;
         }
     }
-
-    // SELBSTGESCHRIEBEN
-
-
-    // Schickt die Nachricht
-    document.getElementById("form").onsubmit = function () {
-        if (!conn) {
-            return false;
-        }
-        if (!msg.value) {
-            return false;
-        }
-        conn.send(msg.value);
-        msg.value = "";
-        return false;
-    };
-
 
     // Sorgt für eine Verbindung mit dem Websocket
     if (window["WebSocket"]) {
@@ -99,13 +95,9 @@ window.onload = function ()
             item.innerHTML = "<b>Connection closed.</b>";
             appendLog(item);
         };
-        conn.onmessage = function (evt) {
-            var messages = evt.data.split('\n');
-            for (var i = 0; i < messages.length; i++) {
-                var item = document.createElement("div");
-                item.innerText = messages[i];
-                appendLog(item);
-            }
+        conn.onmessage = function (event) { // Fängt API-Responses ab
+            var log = JSON.parse(event.data);
+            changeField();
         };
     } else {
         var item = document.createElement("div");
