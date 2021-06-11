@@ -1,14 +1,7 @@
 var conn; // Enthält eine Referenz zum Websocket
 var msg; // Enthält die API-Request
-var log; // Enthält die API-Response
+var res; // Enthält die API-Response
 var playernumber = 1; // Enthält den aktuellen Spieler
-
-var log = {
-    "finished": false,
-    "winner": 1,
-    "nextPlayer": 0,
-    "field": ["XOX", "OXO", "XOX"]
-};
 
 // Verwaltet Eingaben der Clients und bereitet die Daten zum Senden für den API-Request vor.
 function handleClient(element)
@@ -22,18 +15,25 @@ function handleClient(element)
 // Verfasst eine Nachricht im JSON-Format und sendet einen API-Request mit der Nachricht.
 function sendAPIRequest(row, column, reset)
 {
-    /*if (!conn) {
-        window.alert("KEINE VERBINDUNG!");
-    }*/
     
-    msg = {
-        player: playernumber,
-        col: column,
-        row: row,
-        reset: reset,
-    };
 
-    conn.send(JSON.stringify(msg));
+    if (!conn) {
+        window.alert("KEINE VERBINDUNG!");
+    }
+    else
+    {
+        msg = {
+            player: playernumber,
+            col: column,
+            row: row,
+            reset: reset,
+        };
+        conn.send(JSON.stringify(msg));
+        //window.alert("Anfrage: " + reset);
+    }
+
+
+    
 }
 
 // Verwaltung der API-Antwort
@@ -50,18 +50,18 @@ function changeField()
     buttons = document.getElementById("spielfeld").getElementsByTagName("input"); // Buttons ist ein Array, der eine Referenz zu allen Buttons des Spielfelds enthält
     for(i=0; i<buttons.length; i++)
     {
-        buttons[i].value = log.field[Math.floor(i/3)][Math.floor(i%3)];
+        buttons[i].value = res.field[Math.floor(i/3)][Math.floor(i%3)];
     }
 }
 
 // Auswertung des Spiels. Wenn es fertig ist, soll eine Anzeige aufpoppen und ..........
 function evaluateGame()
 {
-    if(log.finished == true)
+    if(res.finished == true)
     {  
         var endmsg;
-        if(log.winner == 0) endmsg = "Es gibt keinen Gewinner (Unentschieden).";
-        else endmsg = "Der Gewinner ist Spieler " + log.winner; 
+        if(res.winner == 0) endmsg = "Es gibt keinen Gewinner (Unentschieden).";
+        else endmsg = "Der Gewinner ist Spieler " + res.winner; 
         window.alert("Das Spiel ist fertig. " + endmsg)
 
         // Hier noch entscheiden, was am Ende passiert (Alles abbrechen??)
@@ -71,7 +71,7 @@ function evaluateGame()
 // Passt den aktuellen Spielernamen abhängig von der API-Antwort an.
 function changePlayer()
 {
-    playernumber = log.nextPlayer;
+    playernumber = res.nextPlayer;
     document.getElementById("spielernummer").innerHTML = playernumber;
 }
 
@@ -96,8 +96,9 @@ window.onload = function ()
             appendLog(item);
         };
         conn.onmessage = function (event) { // Fängt API-Responses ab
-            var log = JSON.parse(event.data);
-            changeField();
+            res = JSON.parse(event.data);
+            handleAPIResponse();
+            
         };
     } else {
         var item = document.createElement("div");
