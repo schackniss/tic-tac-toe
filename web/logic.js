@@ -1,18 +1,26 @@
+var conn;
+var msg;
+var log;
 var playernumber = 1; // Enthält den aktuellen Spieler
 
 // Diese Funktion wird ausgeführt, wenn ein Button auf dem Spielfeld gedrückt wird.
 // Abhängig vom aktuellen Spieler wird ein 'X' oder ein 'O' in das Feld geschrieben wird und das Feld wird für weitere Eingaben gesperrt.
-function changeField(element){
+function changeField(element)
+{
+    row = element.name[0];
+    column = element.name[1];
+    sendRequest(row, column, false);
+
     if(playernumber == 1)
     {
-        element.value = "O";
-        element.disabled = true;
+        //element.value = "O"; // Muss von Server gemacht werden
+        //element.disabled = true; // Nützt nichts, da sich die Buttons nur bei mir sperren würden
         playernumber = 2;
     } 
     else if(playernumber == 2)
     {
-        element.value = "X";
-        element.disabled = true;
+        //element.value = "X";
+        //element.disabled = true;
         playernumber = 1;
     }
     document.getElementById("spielernummer").innerHTML = playernumber;
@@ -21,20 +29,43 @@ function changeField(element){
 // Diese Funktion wird ausgeführt, wenn der Reset-Button gedrückt wird. Sie leert alle Felder des Spielsfelds und entsperrt diese ggf. wieder.
 function resetField()
 {
-    buttons = document.getElementById("spielfeld").getElementsByTagName("input"); // Buttons ist ein Array, der eine Referenz zu allen Buttons des Spielfelds enthält
+    sendRequest(0, 0, true);
+
+    
+    /*buttons = document.getElementById("spielfeld").getElementsByTagName("input"); // Buttons ist ein Array, der eine Referenz zu allen Buttons des Spielfelds enthält
 
     for(i=0; i<buttons.length; i++)
     {
         buttons[i].value = " ";
         buttons[i].disabled = false;
-    }
+    }*/
 }
 
-window.onload = function () {
-    var conn;
-    var msg = document.getElementById("msg"); // Request
-    var log = document.getElementById("log"); //Answer
+function sendRequest(row, column, reset)
+{
+    if (!conn) {
+        window.alert("KEINE VERBINDUNG!");
+        return false;
+    }
+    
+    msg = {
+        player: playernumber,
+        col: column,
+        row: row,
+        reset: reset,
+        ICHBINNEUHIER: "Marc"
+    };
+    
+    window.alert(msg.ICHBINNEUHIER);
+}
 
+window.onload = function () 
+{
+    
+    //var msg = document.getElementById("msg"); // Request
+    //var log = document.getElementById("log"); //Answer
+
+    //Empfängt die Nachricht
     function appendLog(item) {
         var doScroll = log.scrollTop > log.scrollHeight - log.clientHeight - 1;
         log.appendChild(item);
@@ -42,6 +73,9 @@ window.onload = function () {
             log.scrollTop = log.scrollHeight - log.clientHeight;
         }
     }
+
+    // SELBSTGESCHRIEBEN
+
 
     // Schickt die Nachricht
     document.getElementById("form").onsubmit = function () {
@@ -56,6 +90,8 @@ window.onload = function () {
         return false;
     };
 
+
+    // Sorgt für eine Verbindung mit dem Websocket
     if (window["WebSocket"]) {
         conn = new WebSocket("ws://" + document.location.host + "/ws");
         conn.onclose = function (evt) {
