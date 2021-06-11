@@ -9,6 +9,7 @@ import (
 	"github.com/gorilla/websocket"
 )
 
+// Deinition von Konstanten.
 const (
 	// Zeit, die für das Schreiben einer Nachricht an die Gegenstelle zur Verfügung steht.
 	writeWait = 10 * time.Second
@@ -28,6 +29,7 @@ var (
 	space   = []byte{' '}
 )
 
+// Definition der Lese- und Schreib-Puffer-Größe.
 var upgrader = websocket.Upgrader{
 	ReadBufferSize:  1024,
 	WriteBufferSize: 1024,
@@ -125,17 +127,4 @@ func Serve(hub *Hub, w http.ResponseWriter, r *http.Request) {
 	// Erlaubt das Sammeln des vom Aufrufer referenzierten Speichers, indem alle Arbeiten in neuen Go-Routinen ausgeführt werden.
 	go client.writePump()
 	go client.readPump()
-}
-
-func ServeIndex(w http.ResponseWriter, r *http.Request) {
-	log.Println(r.URL)
-	if r.URL.Path != "/" {
-		http.Error(w, "Not found", http.StatusNotFound)
-		return
-	}
-	if r.Method != "GET" {
-		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
-		return
-	}
-	http.ServeFile(w, r, "./web/index.html")
 }
