@@ -22,7 +22,7 @@ func (ttt *TicTacToe) Reset() {
 // Play stellt den Spiel-Ablauf dar.
 func (ttt *TicTacToe) Play(mv Move) {
 	// Prüfen, ob der Zug erlaubt ist (noch kein X oder O auf Feld).
-	if mv.allowed(*ttt) {
+	if mv.allowed(*ttt) && !ttt.Finished {
 		ttt.set(mv)
 		// Prüfen, ob es einen Gewinner gibt oder ob alle Felder belegt sind.
 		if ttt.win(mv) || ttt.end() {
@@ -72,7 +72,7 @@ func (ttt *TicTacToe) win(mv Move) bool {
 
 // end überprüft, ob das Spielfeld vollständig belegt ist.
 func (ttt *TicTacToe) end() bool {
-	return !(strings.Contains(ttt.Field[0], " ") && strings.Contains(ttt.Field[1], " ") && strings.Contains(ttt.Field[2], " "))
+	return !(strings.Contains(ttt.Field[0], " ") || strings.Contains(ttt.Field[1], " ") || strings.Contains(ttt.Field[2], " "))
 }
 
 // set überträgt den Spielzug auf das Spielfeld.
