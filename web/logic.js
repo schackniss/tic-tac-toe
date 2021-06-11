@@ -2,21 +2,20 @@ var conn; // Enthält eine Referenz zum Websocket
 var msg; // Enthält die API-Request
 var res; // Enthält die API-Response
 var playernumber = 1; // Enthält den aktuellen Spieler
+var symbol;
 
 // Verwaltet Eingaben der Clients und bereitet die Daten zum Senden für den API-Request vor.
 function handleClient(element)
 {
     changeField(); // muss wieder entfernt werden!
-    row = element.name[0];
-    column = element.name[1];
+    row = parseInt(element.name[0]);
+    column = parseInt(element.name[1]);
     sendAPIRequest(row, column, false);
 }
 
 // Verfasst eine Nachricht im JSON-Format und sendet einen API-Request mit der Nachricht.
 function sendAPIRequest(row, column, reset)
 {
-    
-
     if (!conn) {
         window.alert("KEINE VERBINDUNG!");
     }
@@ -30,10 +29,7 @@ function sendAPIRequest(row, column, reset)
         };
         conn.send(JSON.stringify(msg));
         //window.alert("Anfrage: " + reset);
-    }
-
-
-    
+    }    
 }
 
 // Verwaltung der API-Antwort
@@ -57,14 +53,18 @@ function changeField()
 // Auswertung des Spiels. Wenn es fertig ist, soll eine Anzeige aufpoppen und ..........
 function evaluateGame()
 {
+    if(playernumber == 1) symbol = " (Kreuz)";
+    else symbol = " (Kreis)";
+    
     if(res.finished == true)
     {  
         var endmsg;
         if(res.winner == 0) endmsg = "Es gibt keinen Gewinner (Unentschieden).";
-        else endmsg = "Der Gewinner ist Spieler " + res.winner; 
-        window.alert("Das Spiel ist fertig. " + endmsg)
+        else endmsg = "Der Gewinner ist Spieler " + res.winner + symbol; 
 
-        // Hier noch entscheiden, was am Ende passiert (Alles abbrechen??)
+        window.alert("Das Spiel ist fertig. " + endmsg);
+
+
     }
 }
 
@@ -72,37 +72,27 @@ function evaluateGame()
 function changePlayer()
 {
     playernumber = res.nextPlayer;
-    document.getElementById("spielernummer").innerHTML = playernumber;
+    if(playernumber == 1) symbol = " (Kreuz)";
+    else symbol = " (Kreis)";
+
+    document.getElementById("spielernummer").innerHTML = playernumber + symbol;
 }
 
 // Wird beim Starten des Servers ausgeführt
 window.onload = function () 
 {
-    // Brauchen wir das??
-    function appendLog(item) {
-        var doScroll = log.scrollTop > log.scrollHeight - log.clientHeight - 1;
-        log.appendChild(item);
-        if (doScroll) {
-            log.scrollTop = log.scrollHeight - log.clientHeight;
-        }
-    }
-
     // Sorgt für eine Verbindung mit dem Websocket
     if (window["WebSocket"]) {
         conn = new WebSocket("ws://" + document.location.host + "/ws");
         conn.onclose = function (evt) {
-            var item = document.createElement("div");
-            item.innerHTML = "<b>Connection closed.</b>";
-            appendLog(item);
+            window.alert("WebSocket-Verbindung getrennt.")
         };
         conn.onmessage = function (event) { // Fängt API-Responses ab
             res = JSON.parse(event.data);
             handleAPIResponse();
-            
         };
-    } else {
-        var item = document.createElement("div");
-        item.innerHTML = "<b>Your browser does not support WebSockets.</b>";
-        appendLog(item);
+    }
+    else {
+        window.alert("Dein Browser unterstützt keine WebSockets.");
     }
 };
