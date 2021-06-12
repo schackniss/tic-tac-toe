@@ -2,7 +2,7 @@ var conn; // Enthält eine Referenz zum Websocket
 var msg; // Enthält die API-Request
 var res; // Enthält die API-Response
 var playernumber = 1; // Enthält den aktuellen Spieler
-var symbol;
+var symbol; // Enthält einen Text, welches Symbol der aktuelle Spieler besitzt (Kreis oder Kreuz)
 
 // Verwaltet Eingaben der Clients und bereitet die Daten zum Senden für den API-Request vor.
 function handleClient(element)
