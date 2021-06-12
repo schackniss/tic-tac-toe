@@ -1,4 +1,5 @@
-# Paket: game
+# `web/`
+Dieses Verzeichnis enthält die browserseitige Umsetzung. (Visualisierung und Kommunikation mit der API)
 
 ## Enthaltene Dateien
 - `index.html`:

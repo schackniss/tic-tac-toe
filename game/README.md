@@ -1,4 +1,5 @@
 # Paket: game
+Das Paket beinhaltet die serverseitig Tic Tac Toe Spiellogik.
 
 ## Enthaltene Dateien
 - `move.go`:

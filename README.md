@@ -27,3 +27,36 @@ In jedem Verzeichnis ist nochmals eine `README.md`-Datei, zur genaueren Erläute
    ```
 5. URL [http://localhost:8080](http://localhost:8080) im Web-Browser öffnen
 6. Spaß beim Spielen nicht vergessen!
+
+## Lastenheft
+- Umsetzung der Spiellogik
+- Darstellung im Web-Browser --> Spiel ermöglichen ohne Neuladen der Seite 
+- Beliebig viele Spieler und ein Spielfeld 
+- Jeder verbundene Client kann sowohl für Spieler 1 als auch für Spieler 2 Züge ausführen. 
+- Anzeige des Spielfelds, des aktuellen Spielers und gegebenenfalls des Spielergebnisses
+
+## Pflichtenheft
+Das Projekt wird in drei Teilaufgaben unterteilt. Es wird in Server (Backend) und Browser (Frontend) strukturiert. Browserseitig findet eine getrennte Entwicklung der visuellen Darstellung und der Logik statt. 
+
+### Backend
+- Realisierung mit GO
+- Tic Tac Toe Spiellogik implementieren
+- Implementierung eines WebSockets für die bidirektionale Verbindung zwischen Front- und Backend
+- Frontend hosten (Webserver)
+- API-Anfragen auswerten und basierend auf der Logik eine API-Antwort senden (Kommunikation zwischen Front und Backend)
+
+### Frontend - Logik
+- Realisierung mit JavaScript
+- WebSocket Verbindung zum Backend implementieren 
+- API-Anfragen senden (bei Spielzug)   
+- API-Antworten auswerten: 
+  - Darstellung des aktuellen Spielstands (Pop-up bei Gewinn/Unentschieden)
+
+### Frontend - Visuell 
+- Realisierung mit HTML/CSS 
+- Überschrift
+- Anzeige des Spielfeldes für eine Userinteraktionsmöglichkeit (Buttons)
+- Pop-up Fenster des Spielergebnisse
+
+## Screenshots und Dokumentation
+Screenshots und Dokumentation sind im Verzeichnis `docs/` zu finden.
