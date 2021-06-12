@@ -2,22 +2,22 @@
 <!--  -->
 <html lang="en">
 <head>
-    <title>Tic Tac Toe</title>
-    <link rel="stylesheet" type="text/css" href="style.css"/> <!--bettet das stylesheet hier ein, damit es übersichtlicher wird -->
-    <script type="text/javascript" src="logic.js"></script>
+    <title>Tic Tac Toe</title> <!-- der Titel der Website, der in dem Tab angezeigt wird -->
+    <link rel="stylesheet" type="text/css" href="style.css"/> <!-- bettet das externe stylesheet ein, damit es übersichtlicher wird -->
+    <script type="text/javascript" src="logic.js"></script> <!-- bettet logic.js ein -->
 </head>
 <body>
-<div id="Header"> <!--Header container für die Überschrift und Anzeige, welcher Spieler am Zug ist-->
-    <h1 id="ueberschrift">Tic Tac Toe</h1> 
-    <hr>
+<div id="Header"> <!--Header container für die Überschrift und Anzeige, welcher Spieler am Zug ist die id's werden im css sheet zur referenzierung genutzt -->
+    <h1 id="ueberschrift">Tic Tac Toe</h1> <!-- Die große Überschrift der Website -->
+    <hr> 
     <div id ="spieler">
-        <h3>Spieler*in</h3><h3 id="spielernummer">&nbsp</h3><h3>ist an der Reihe</h3> 
+        <h3>Spieler*in</h3><h3 id="spielernummer">&nbsp</h3><h3>ist an der Reihe</h3> <!-- zeigt, welcher Spieler aktuell am Zug ist -->
     </div>
     
 </div>
 
-<div id="spielfeld"> <!-- Container für das Spielfeld um die Elemente besser organisieren zu können -->
-    <div id="buttons">
+<div id="spielfeld"> <!-- Container für das Spielfeld, um die Elemente besser organisieren zu können, dieser wird zentriert -->
+    <div id="buttons"> <!-- Container, der nur die buttons umfasst, um sie besser auf der Seite plazieren zu können -->
     <input onclick="handleClient(this)" type="button" value=" " id="btn00" name="00"></input> <!-- onClick wird bei einem klick auf den Button ausgeführt -> siehe logic.js für die ausgeführte Funktion -->
     <input onclick="handleClient(this)" type="button" value=" " id="btn01" name="01"></input>
     <input onclick="handleClient(this)" type="button" value=" " id="btn02" name="02"></input>
@@ -35,8 +35,8 @@
 <hr>
 <br>
 <br>
-<div id="footer">  <!--container für footer-->
-    <button onclick="sendAPIRequest(0, 0, true);" type="button" id="resetbtn">reset game</button>
+<div id="footer">  <!--container für den footer-->
+    <button onclick="sendAPIRequest(0, 0, true);" type="button" id="resetbtn">reset game</button> <!-- button, um das Spielfeld zurückzusetzen -->
 </br>
 </br>
 </br>

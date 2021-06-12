@@ -1,6 +1,7 @@
-/* */
+/* möglichst viele Elemente werden Prozentual angegeben, um die Elemente flexibel auf die Größe der Website anzupassen */
+
 html {
-    overflow: scroll;
+    overflow: scroll; /* gibt an, dass die scrollbar an der Seite angezeigt wird */
     
 }
 
@@ -44,19 +45,19 @@ body {
 #spielfeld{
     margin: auto;
     width: 70%;  
-    height: 500px;
+    height: 500px; /* kann nicht prozentual angegeben werden also wird eine pixeleinheit festgelegt */
     display: flex;
     justify-content: center;
     
 }
 
-#buttons{
+#buttons{ 
     width: 50%;
     height: 100%;
     margin: 0 auto;
 }
 
-/* wird auf jeden button angewendet, um ein einheitliches Bild zu erstellen */
+/* wird auf jeden input-button angewendet, um ein einheitliches Bild zu erstellen */
 input{   
     width: 30%;
     height: 30%;
@@ -85,6 +86,7 @@ input:active {
     top:1px;
 }
 
+/* wird auf den reset button angewendet */
 button{
     width: 400px;
     height: 100px;
@@ -129,12 +131,4 @@ button:active {
     justify-content: center;
 }
 
-#form {
-    padding: 0 0.5em 0 0.5em;
-    margin: 0;
-    position: absolute;
-    bottom: 1em;
-    left: 0px;
-    width: 100%;
-    overflow: hidden;
-}
+
