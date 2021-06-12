@@ -62,8 +62,11 @@ function evaluateGame()
         if(res.winner == 0) endmsg = "Es gibt keinen Gewinner (Unentschieden).";
         else endmsg = "Der Gewinner ist Spieler " + res.winner + symbol; 
 
-        window.alert("Das Spiel ist fertig. " + endmsg);
-
+        
+        setTimeout(function()
+        {
+            window.alert("Das Spiel ist fertig. " + endmsg); // Wartet einen kurzen Moment, bis die HTML-Seite vollständig geladen ist, um anschließend das Endergebnis anzuzeigen.  
+        }, 50); 
 
     }
 }
