@@ -25,8 +25,9 @@ In jedem Verzeichnis ist nochmals eine `README.md`-Datei, zur genaueren Erläute
    Starting webserver...
    http://localhost:8080
    ```
-5. URL [http://localhost:8080](http://localhost:8080) im Web-Browser öffnen
-6. Spaß beim Spielen nicht vergessen!
+5. URL [http://localhost:8080](http://localhost:8080) im Web-Browser öffnen.
+6. Die Webanwendung kann auch von anderen Clients im Netzwerk aufgerufen werden. Hierfür muss `localhost` durch die IP-Adresse des Gerätes, auf dem `tic-tac-toe.exe` ausgeführt wird, ersetzt werden.
+7. Spaß beim Spielen nicht vergessen!
 
 ## Lastenheft
 - Umsetzung der Spiellogik
