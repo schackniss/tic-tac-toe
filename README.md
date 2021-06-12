@@ -3,7 +3,7 @@
 
 ## Klausurersatzleistung Web-Programmierung
 - Marc Glocker (4693611)
-- Clara Lo Curto ()
+- Clara Lo Curto (8484335)
 - Johannes Schackniß (4175962)
 
 ## Enthaltene Dateien
